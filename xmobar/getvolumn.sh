@@ -18,6 +18,6 @@ case $bars in
   *)  bar='----!!----' ;;
 esac
 
-echo $bar
+echo "[$bar] $vol"
 
 exit 0
