@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sudo pacman -S xmonad xmonad-contrib xmobar picom nitrogen
+sudo pacman -S kitty dmenu xmonad xmonad-contrib xmobar picom nitrogen
