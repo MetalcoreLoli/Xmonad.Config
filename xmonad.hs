@@ -51,7 +51,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1:dev","2:term","3:web", "4:music", "5:etc"] ++ map show [6..9]
+myWorkspaces    = ["1:dev","2:term","3:web", "4:music", "5:tw",  "6:etc"] ++ map show [6..9]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -76,7 +76,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_F11   ), spawn "amixer -c 1 sset 'Master' 5%-")
 
 
-    , ((modm .|. shiftMask, xK_F10), spawn "/home/daniel/.config/xmobar/layout_change.sh")
+    , ((modm .|. shiftMask, xK_F10), spawn "$HOME/.xmonad/xmobar/layout_change.sh")
     
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
