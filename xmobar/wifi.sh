@@ -7,11 +7,16 @@ iwconfig wlan0 2>&1 | grep -q no\ wireless\ extensions\. && {
 RX=`iw dev wlp2s0 link | grep -o "RX: \S*" | cut -d ' ' -f 2`
 TX=`iw dev wlp2s0 link | grep -o "TX: \S*" | cut -d ' ' -f 2`
 
+sleep 0.5
+
+rrX=`iw dev wlp2s0 link | grep -o "RX: \S*" | cut -d ' ' -f 2`
+ttX=`iw dev wlp2s0 link | grep -o "TX: \S*" | cut -d ' ' -f 2`
+
 essid=`iw dev | grep -o "ssid \S*" | cut -d ' ' -f 2`
 stngth=`iwconfig wlp2s0 | awk -F '=' '/Quality/ {print $2}' | cut -d '/' -f 1`
 bars=`expr $stngth / 10`
-inputTraffic=`expr $RX / 1024 / 1024`
-outTraffic=`expr $TX / 1024 / 1024`
+inputTraffic=`echo "scale=2;$(( $RX )) / 1024 / 1024" | bc`
+outTraffic=`echo "scale=2;$(( $TX )) / 1024 / 1024" | bc`
 
 case $bars in
   0)  bar='----------' ;;
@@ -28,6 +33,6 @@ case $bars in
   *)  bar='----!!----' ;;
 esac
 
-printf "$essid: $bar RX: $inputTraffic Mb TX: $outTraffic Mb"
+printf "$essid: $bar"
 
 exit 0
