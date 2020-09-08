@@ -75,6 +75,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- lower volumn
     , ((modm,               xK_F11   ), spawn "amixer -c 1 sset 'Master' 5%-")
 
+    -- take screenshot
+    , ((modm, xK_F9   ), spawn "import -window root ~/screenshot_$(date | grep -o -E '[0-9]{2}:[0-9]{2}:[0-9]{2}').png")
+
 
     , ((modm .|. shiftMask, xK_F10), spawn "$HOME/.xmonad/xmobar/layout_change.sh")
     
@@ -295,7 +298,6 @@ main = do
     } where showNamedWorkspaces wsId = if any (`elem` wsId) ['a' .. 'z']
                                         then pad wsId 
                                         else ""
-
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
 -- use the defaults defined in xmonad/XMonad/Config.hs
