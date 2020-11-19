@@ -269,7 +269,7 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do 
-    xmproc <- spawnPipe "xmobar /home/daniel/.xmonad/xmobar/xmobar.config"    
+    xmproc <- spawnPipe "xmobar $HOME/.xmonad/xmobar/xmobar.config"    
     xmonad $ docks def {
       -- simple stuff
         terminal           = myTerminal,
@@ -289,7 +289,7 @@ main = do
         layoutHook         = avoidStruts $ myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = dynamicLogWithPP $ defaultPP {
+        logHook            = dynamicLogWithPP $ def{
                                 ppOutput            = hPutStrLn xmproc,
                                 ppSep               = "   ",
                                 ppWsSep             = " ", 
